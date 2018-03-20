@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ekspres.ssc.smartwater2">
+
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Saldo" />
+        <activity android:name=".Record" />
+        <activity android:name=".Read_Card" />
+        <activity android:name=".Isi_Saldo" />
+
+        <receiver
+            android:name=".broadcast.GattUpdateReceiver"
+            android:enabled="true"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="com.example.c.cardreader.ACTION_GATT_CONNECTED"></action>
+                <action android:name="com.example.c.cardreader.ACTION_GATT_DISCONNECTED"></action>
+                <action android:name="com.example.c.cardreader.ACTION_GATT_SERVICES_DISCOVERED"></action>
+                <action android:name="com.example.c.cardreader.ACTION_DATA_AVAILABLE"></action>
+                <action android:name="com.example.c.cardreader.ACTION_WRITE_SUCCESS"></action>
+                <action android:name="com.example.c.cardreader.EXTRA_DATA"></action>
+
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".service.BluetoothLeService"
+            android:enabled="true"
+            android:exported="true"/>
+    </application>
+
+</manifest>
